@@ -1,3 +1,7 @@
+div img {
+  transition: all .3s ease;
+}
+
 div img:hover {
   transform: scale(1.02);
 }
