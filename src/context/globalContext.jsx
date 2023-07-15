@@ -63,7 +63,6 @@ export const GlobalStateProvider = ({ children }) => {
 
     const saveBook = (id) => {
         dispatch({ type: 'SAVE_BOOK', payload: id })
-        console.log(state.savedBook)
     }
 
     const changeFilters = (filters) => {

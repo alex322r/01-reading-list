@@ -1,24 +1,33 @@
 
 
-export default function Book({ title, cover, addToReadingList, removeFromLibrary, saveBook }) {
+export default function Book({ title, cover, synopsis, addToReadingList, removeFromLibrary, saveBook }) {
 
     const handleClick = () => {
         addToReadingList(title)
         removeFromLibrary(title)
     }
     const handleDragStart = (e) => {
-        const id = e.target.parentElement.id
+        const id = e.target.id
         saveBook(id)
     }
 
     const handleDragEnd = (e) => {
-        const id = e.target.parentElement.id
+        const id = e.target.id
         removeFromLibrary(id)
     }
 
+    // const handleMouseOver = (e) => {
+    //     const synopsis = e.target.nextElementSibling
+    //     const timeout = setTimeout(() => {
+    //         synopsis.classList.add("active")
+    //         clearTimeout(timeout)
+    //     }, 1000)
+    // }
+
     return (
-        < div onDragStart={handleDragStart} onDragEnd={handleDragEnd} draggable='true' className="book" id={title} onClick={handleClick} >
-            <img style={{ width: '200px' }} src={cover} />
+        < div className='book' onDragStart={handleDragStart} onDragEnd={handleDragEnd} draggable='true' className="book" id={title} onClick={handleClick} >
+            <img style={{ height: '100%', objectFit: 'fill', zIndex: '50' }} src={cover} />
+            <div className="synopsis"><p>{synopsis}</p></div>
         </div >
     )
 }

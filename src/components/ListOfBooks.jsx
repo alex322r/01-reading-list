@@ -11,9 +11,9 @@ export default function ListOfBooks() {
     <main style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '50px' }} >
       {
         books?.map(book => {
-          const { title, cover } = book
+          const { title, cover, synopsis } = book
           return (
-            <Book key={title} title={title} saveBook={saveBook} cover={cover} addToReadingList={addToReadingList} removeFromLibrary={removeFromLibrary} />
+            <Book key={title} synopsis={synopsis} title={title} saveBook={saveBook} cover={cover} addToReadingList={addToReadingList} removeFromLibrary={removeFromLibrary} />
           )
         })
       }

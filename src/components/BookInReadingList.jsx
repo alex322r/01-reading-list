@@ -3,7 +3,8 @@ export default function BookInReadingList({ title, cover, removeBookFromReadingL
 
     return (
         < div className="book" id={title} onClick={() => removeBookFromReadingList(title)} >
-            <img style={{ width: '200px' }} src={cover} />
+            <img style={{ height: '100%' }} src={cover} />
         </div >
     )
 }
+

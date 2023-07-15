@@ -12,10 +12,9 @@ export default function ReadingList() {
     e.preventDefault()
   }
 
-  const handleDrop = (e) => {
+  const handleDrop = () => {
     const savedBookId = savedBook.book.title
     addToReadingList(savedBookId)
-    console.log(readingList)
   }
 
   return (
