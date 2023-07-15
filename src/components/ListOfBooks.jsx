@@ -3,7 +3,8 @@ import useFilters from "../hooks/useFilters"
 import Book from "./Book"
 
 export default function ListOfBooks() {
-  const { library, addToReadingList } = useGlobalContext()
+  const { library, addToReadingList, removeFromLibrary, saveBook } = useGlobalContext()
+
   const { filterLibrary } = useFilters()
   const books = filterLibrary(library)
   return (
@@ -12,7 +13,7 @@ export default function ListOfBooks() {
         books?.map(book => {
           const { title, cover } = book
           return (
-            <Book key={title} title={title} cover={cover} someAction={addToReadingList} />
+            <Book key={title} title={title} saveBook={saveBook} cover={cover} addToReadingList={addToReadingList} removeFromLibrary={removeFromLibrary} />
           )
         })
       }

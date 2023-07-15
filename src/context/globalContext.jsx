@@ -14,6 +14,7 @@ const books = data.library.map(item => {
 const initialState = JSON.parse(localStorage.getItem('state')) || {
     library: books,
     readingList: [],
+    savedBook: null,
     filters: {
         category: 'all',
     }
@@ -46,13 +47,23 @@ export const GlobalStateProvider = ({ children }) => {
 
     const addToReadingList = (id) => {
         dispatch({ type: 'ADD_BOOK_TO_READING_LIST', payload: id })
-        dispatch({ type: 'REMOVE_BOOK_FROM_LIBRARY', payload: id })
+    }
 
+    const removeFromLibrary = (id) => {
+        dispatch({ type: 'REMOVE_BOOK_FROM_LIBRARY', payload: id })
+    }
+
+    const addToLibrary = (id) => {
+        dispatch({ type: 'ADD_BOOK_TO_LIBRARY', payload: id })
     }
 
     const removefromReadingList = (id) => {
-        dispatch({ type: 'ADD_BOOK_TO_LIBRARY', payload: id })
         dispatch({ type: 'REMOVE_BOOK_FROM_READING_LIST', payload: id })
+    }
+
+    const saveBook = (id) => {
+        dispatch({ type: 'SAVE_BOOK', payload: id })
+        console.log(state.savedBook)
     }
 
     const changeFilters = (filters) => {
@@ -60,7 +71,7 @@ export const GlobalStateProvider = ({ children }) => {
     }
 
     return (
-        <GlobalStateContext.Provider value={{ ...state, addToReadingList, removefromReadingList, changeFilters }} >
+        <GlobalStateContext.Provider value={{ ...state, saveBook, addToReadingList, removeFromLibrary, addToLibrary, removefromReadingList, changeFilters }} >
             {children}
         </GlobalStateContext.Provider>
     )

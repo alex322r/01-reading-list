@@ -1,10 +1,25 @@
 import { useGlobalContext } from "../context/globalContext"
-import Book from "./Book"
+import BookInReadingList from "./BookInReadingList"
 
 export default function ReadingList() {
-  const { readingList, removefromReadingList } = useGlobalContext()
+  const { readingList, addToLibrary, removeFromLibrary, addToReadingList, removefromReadingList, savedBook } = useGlobalContext()
+  const removeBookFromReadingList = (id) => {
+    addToLibrary(id)
+    removefromReadingList(id)
+  }
+
+  const handleDragOver = (e) => {
+    e.preventDefault()
+  }
+
+  const handleDrop = (e) => {
+    const savedBookId = savedBook.book.title
+    addToReadingList(savedBookId)
+    console.log(readingList)
+  }
+
   return (
-    <aside style={{ width: '35%', display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+    <aside onDragOver={handleDragOver} onDrop={handleDrop} style={{ width: '35%', display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
       <h2 style={{ fontSize: '2.5rem' }} >Lista de Lectura</h2>
       <div style={{ display: 'flex', gap: '10px ', flexWrap: 'wrap', justifyContent: 'center', marginTop: '50px' }} >
 
@@ -12,7 +27,7 @@ export default function ReadingList() {
           readingList.map(book => {
             const { title, cover } = book
             return (
-              <Book someAction={removefromReadingList} key={title} title={title} cover={cover} />
+              <BookInReadingList removeBookFromReadingList={removeBookFromReadingList} key={title} title={title} cover={cover} />
             )
           })
         }
