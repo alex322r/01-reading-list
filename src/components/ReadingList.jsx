@@ -15,6 +15,7 @@ export default function ReadingList() {
   const handleDrop = () => {
     const savedBookId = savedBook.book.title
     addToReadingList(savedBookId)
+    removeFromLibrary(savedBookId)
   }
 
   return (

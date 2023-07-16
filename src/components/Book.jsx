@@ -11,11 +11,6 @@ export default function Book({ title, cover, synopsis, addToReadingList, removeF
         saveBook(id)
     }
 
-    const handleDragEnd = (e) => {
-        const id = e.target.id
-        removeFromLibrary(id)
-    }
-
     // const handleMouseOver = (e) => {
     //     const synopsis = e.target.nextElementSibling
     //     const timeout = setTimeout(() => {
@@ -25,7 +20,7 @@ export default function Book({ title, cover, synopsis, addToReadingList, removeF
     // }
 
     return (
-        < div className='book' onDragStart={handleDragStart} onDragEnd={handleDragEnd} draggable='true' className="book" id={title} onClick={handleClick} >
+        < div className='book' onDragStart={handleDragStart} draggable='true' className="book" id={title} onClick={handleClick} >
             <img style={{ height: '100%', objectFit: 'fill', zIndex: '50' }} src={cover} />
             <div className="synopsis"><p>{synopsis}</p></div>
         </div >
